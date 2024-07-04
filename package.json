@@ -1,0 +1,44 @@
+{
+  "name": "altastype",
+  "version": "0.1.0",
+  "description": "",
+  "main": "./src/main.js",
+  "scripts": {
+    "dev": "nodemon",
+    "lint": "eslint . --ext .ts",
+    "test": "jest --passWithNoTests",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/altaskur/AltasType.git"
+  },
+  "author": "Altaskur",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/altaskur/AltasType/issues"
+  },
+  "homepage": "https://github.com/altaskur/AltasType#readme",
+  "devDependencies": {
+    "@eslint/js": "^8.57.0",
+    "@types/node": "^20.14.9",
+    "@typescript-eslint/eslint-plugin": "^7.15.0",
+    "@typescript-eslint/parser": "^7.15.0",
+    "commitlint": "^19.3.0",
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^18.0.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "globals": "^15.8.0",
+    "husky": "^8.0.0",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "picocolors": "^1.0.1",
+    "prompts": "^2.4.2",
+    "zod": "^3.23.8"
+  }
+}

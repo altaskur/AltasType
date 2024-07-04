@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+bash .husky/prevent-commit.sh
+npm run lint
+npm run test
