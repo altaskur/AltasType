@@ -1,4 +1,3 @@
-console.log('Hello World! 🌍');
-console.log('🚀 The TypeScript code is running! 🚀');
+import showWelcomeMessage from './wellcomeMessage';
 
-console.log('🎉 Congratulations! 🎉');
+showWelcomeMessage();
