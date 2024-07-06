@@ -1,3 +1,3 @@
-import showWelcomeMessage from './wellcomeMessage';
+import showWelcomeMessage from './welcomeMessage';
 
 showWelcomeMessage();
