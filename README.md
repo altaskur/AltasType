@@ -53,10 +53,11 @@ Si deseas contribuir al proyecto, puedes revisar la sección de Issues para enco
 Si tienes ideas para mejorar la librería o has encontrado un error, por favor abre un issue en el repositorio o envía un pull request.
 
 1. Fork el repositorio
-1. Crea una rama para tu característica (git checkout -b feature/nueva-caracteristica)
-1. Haz commit de tus cambios (git commit -m 'Añadir nueva característica')
-1. Push a la rama (git push origin feature/nueva-caracteristica)
-1. Abre un pull request
+2. Selecciona la rama de desarrollo (git checkout develop)
+3. Crea una rama para tu característica (git checkout -b feature/nueva-caracteristica)
+4. Haz commit de tus cambios (git commit -m 'Añadir nueva característica')
+5. Push a la rama (git push origin feature/nueva-caracteristica)
+6. Abre un pull request
 
 ## Licencia
 
