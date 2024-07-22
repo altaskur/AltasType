@@ -1,0 +1,4408 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "AEMET OpenData",
+    "description": "AEMET OpenData es una API REST desarrollado por AEMET que permite la difusión y la reutilización de la información meteorológica y climatológica de la Agencia, en el sentido indicado en la Ley 18/2015, de 9 de julio, por la que se modifica la Ley 37/2007, de 16 de noviembre, sobre reutilización de la información del sector público. (IMPORTANTE: Para poder realizar peticiones, es necesario introducir en API Key haciendo clic en el círculo rojo de recurso REST).<br><br>`IMPORTANTE`: Para poder realizar peticiones, es necesario introducir el `api_key` y haciendo clic en el botón `'Authorize'`. Después pulse en el botón `'Try it out'´ del recurso que quiera consultar.",
+    "contact": {
+      "name": "Datos abiertos AEMET",
+      "url": "https://www.aemet.es/es/datos_abiertos"
+    },
+    "license": {
+      "name": "Condiciones de uso de reutilización",
+      "url": "https://www.aemet.es/es/nota_legal"
+    },
+    "version": "2.0"
+  },
+  "servers": [
+    {
+      "url": "https://opendata.aemet.es/opendata"
+    }
+  ],
+  "tags": [
+    {
+      "name": "predicciones-especificas",
+      "description": "Predicciones Especificas"
+    },
+    {
+      "name": "observacion-convencional",
+      "description": "Observacion Convencional"
+    },
+    {
+      "name": "valores-climatologicos",
+      "description": "Valores Climatologicos"
+    },
+    {
+      "name": "informacion-satelite",
+      "description": "Informacion Satelite"
+    },
+    {
+      "name": "mapas-y-graficos",
+      "description": "Mapas Y Graficos"
+    },
+    {
+      "name": "maestro",
+      "description": "Maestro"
+    },
+    {
+      "name": "productos-climatologicos",
+      "description": "Productos Climatologicos"
+    },
+    {
+      "name": "prediccion-maritima",
+      "description": "Prediccion Maritima"
+    },
+    {
+      "name": "redes-especiales",
+      "description": "Redes Especiales"
+    },
+    {
+      "name": "red-rayos",
+      "description": "Red Rayos"
+    },
+    {
+      "name": "indices-incendios",
+      "description": "Indices Incendios"
+    },
+    {
+      "name": "predicciones-normalizadas-texto",
+      "description": "Predicciones Normalizadas Texto"
+    },
+    {
+      "name": "red-radares",
+      "description": "Red Radares"
+    },
+    {
+      "name": "avisos_cap",
+      "description": "Avisos"
+    },
+    {
+      "name": "antartida",
+      "description": "Antartida"
+    }
+  ],
+  "paths": {
+    "/api/avisos_cap/ultimoelaborado/area/{area}": {
+      "get": {
+        "tags": [
+          "avisos_cap"
+        ],
+        "summary": "Avisos de Fenómenos Meteorológicos Adversos. Último.",
+        "description": " Últimos Avisos de Fenómenos Meteorológicos adversos elaborado para el área seleccionada.",
+        "operationId": "Avisos de Fenómenos Meteorológicos Adversos. Último.",
+        "parameters": [
+          {
+            "name": "area",
+            "in": "path",
+            "description": " | Código | Área |\n|----------|----------|\n| esp  | España|\n| 61  | Andalucía   |\n| 62  | Aragón   |\n| 63  | Asturias, Principado de  |\n| 64  | Ballears, Illes   |\n| 78  | Ceuta   |\n| 65  | Canarias   |\n| 66  | Cantabria   |\n| 67  | Castilla y León   |\n| 68  | Castilla - La Mancha   |\n| 69  | Cataluña   |\n| 77  | Comunitat Valenciana   |\n| 70  | Extremadura   |\n| 71  | Galicia   |\n| 72  | Madrid, Comunidad de    |\n| 79  | Melilla   |\n| 73  | Murcia, Región de   |\n| 74  | Navarra, Comunidad Foral de   |\n| 75  | País Vasco |\n| 76  | Rioja, La",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/avisos_cap/archivo/fechaini/{fechaIniStr}/fechafin/{fechaFinStr}": {
+      "get": {
+        "tags": [
+          "avisos_cap"
+        ],
+        "summary": "Avisos de Fenómenos Meteorológicos Adversos. Archivo.",
+        "description": " Avisos de Fenómenos Meteorológicos adversos para el rango de fechas seleccionado (datos desde 18/06/2018).",
+        "operationId": "Avisos de Fenómenos Meteorológicos Adversos. Archivo",
+        "parameters": [
+          {
+            "name": "fechaIniStr",
+            "in": "path",
+            "description": "Fecha Inicial (AAAA-MM-DDTHH:MM:SSUTC)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fechaFinStr",
+            "in": "path",
+            "description": "Fecha Final (AAAA-MM-DDTHH:MM:SSUTC)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/incendios/mapasriesgo/estimado/area/{area}": {
+      "get": {
+        "tags": [
+          "indices-incendios"
+        ],
+        "summary": "Mapa de niveles de riesgo estimado meteorológico de incendios forestales.",
+        "description": "Último mapa elaborado de niveles de riesgo estimado meteorológico de incendios forestales para el área pasada por parámetro.",
+        "operationId": "Mapa de niveles de riesgo estimado meteorológico de incendios forestales.",
+        "parameters": [
+          {
+            "name": "area",
+            "in": "path",
+            "description": " | Código | Área |\n|----------|----------|\n| p  | Península y Baleares  |\n| c  | Canarias   ",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/incendios/mapasriesgo/previsto/dia/{dia}/area/{area}": {
+      "get": {
+        "tags": [
+          "indices-incendios"
+        ],
+        "summary": "Mapa de niveles de riesgo previsto meteorológico de incendios forestales.",
+        "description": "Mapa elaborado de niveles de riesgo estimado meteorológico de incendios forestales para el día y el área pasados por parámetro.",
+        "operationId": "Mapa de niveles de riesgo previsto meteorológico de incendios forestales.",
+        "parameters": [
+          {
+            "name": "dia",
+            "in": "path",
+            "description": " | Código | Día |\n|----------|----------|\n| 1  | Mañana   |\n| 2  | Pasado Mañana   |\n| 3  | Dentro de 3 días   |\n| 4  | Dentro de 4 días   |\n| 5  | Dentro de 5 días   |\n| 6  | Dentro de 6 días   |\n| 7  | Dentro de 7 días   ",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "area",
+            "in": "path",
+            "description": " | Código | Área |\n|----------|----------|\n| p  | Península y Baleares  |\n| c  | Canarias   ",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/maestro/municipio/{municipio}": {
+      "get": {
+        "tags": [
+          "maestro"
+        ],
+        "summary": "Información específica municipio.",
+        "description": "Retorna información específica del municipio de España que se le pasa como parámetro.",
+        "operationId": "getMunicipioUsingGET",
+        "parameters": [
+          {
+            "name": "municipio",
+            "in": "path",
+            "description": "Municipio",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/maestro/municipios": {
+      "get": {
+        "tags": [
+          "maestro"
+        ],
+        "summary": "Información específica municipios.",
+        "description": "Retorna todos los municipios de España. Este servicio es útil para obtener información para utilizar otros elementos de AEMET OpenData, como por ejemplo, la predicción de municipios para 7 días o por  horas ya que nos retorna el id del municipio que necesitamos.",
+        "operationId": "getMunicipiosUsingGET",
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/mapasygraficos/analisis": {
+      "get": {
+        "tags": [
+          "mapas-y-graficos"
+        ],
+        "summary": "Mapas de análisis. Última pasada.",
+        "description": "Estos mapas muestran la configuración de la presión en superficie usando isobaras (lineas de igual presión), áreas de alta (A, a) y baja (B, b) presión y los frentes en Europa y el Atlántico Norte.El mapa de análisis presenta el estado de la atmósfera a la hora correspondiente y los fenómenos más relevantes observados en España. Periodicidad de actualización: cada 12 horas (00, 12).",
+        "operationId": "Mapas de análisis. Última pasada.",
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/mapasygraficos/mapassignificativos/fecha/{fecha}/{ambito}/{dia}": {
+      "get": {
+        "tags": [
+          "mapas-y-graficos"
+        ],
+        "summary": "Mapas significativos. Tiempo actual.",
+        "description": "Mapas significativos de ámbito nacional o CCAA, para una fecha dada y ese mismo día (D+0),  al día siguiente (D+1) o a los dos días (D+2), en el periodo horario de (00_12) ó (12-24). Hasta el 22/01/2020.",
+        "operationId": "Mapas significativos. Tiempo actual.",
+        "parameters": [
+          {
+            "name": "fecha",
+            "in": "path",
+            "description": "Fecha de elaboración (AAAA-MM-DD)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ambito",
+            "in": "path",
+            "description": " | Código | Ámbito |\n|----------|----------|\n| esp  | España|\n| and  | Andalucía   |\n| arn  | Aragón   |\n| ast  | Asturias  |\n| bal  | Ballears, Illes   |\n| coo  | Canarias   |\n| can  | Cantabria   |\n| cle  | Castilla y León   |\n| clm  | Castilla - La Mancha   |\n| cat  | Cataluña   |\n| val  | Comunitat Valenciana   |\n| ext  | Extremadura   |\n| gal  | Galicia   |\n| mad  | Madrid, Comunidad de    |\n| mur  | Murcia, Región de   |\n| nav  | Navarra, Comunidad Foral de   |\n| pva  | País Vasco |\n| rio  | Rioja, La",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dia",
+            "in": "path",
+            "description": " | Código de día | Día |\n|----------|----------|\n| a | D+0 (00-12)  |\n| b  | D+0 (12-24)   |\n|  c | D+1 (00-12)  |\n| d  | D+1 (12-24) |\n| e  | D+2 (00-12) |\n| f  | D+2 (12-24)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/observacion/convencional/todas": {
+      "get": {
+        "tags": [
+          "observacion-convencional"
+        ],
+        "summary": "Datos de observación. Tiempo actual.",
+        "description": "Datos de observación horarios de las últimas 12 horas todas las estaciones meteorológicas de las que se han recibido datos en ese período. Frecuencia de actualización: continuamente. <br><br> <a href='https://opendata.aemet.es/centrodedescargas/rssatom'\n    target='_blank'>Canales RSS</a> disponibles:\n        <ul>\n        <li>Observación convencional horaria</li>\n        </ul>",
+        "operationId": "Datos de observación. Tiempo actual.",
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/observacion/convencional/datos/estacion/{idema}": {
+      "get": {
+        "tags": [
+          "observacion-convencional"
+        ],
+        "summary": "Datos de observación. Tiempo actual.",
+        "description": "Datos de observación horarios de las últimas 12 horas de la estación meterológica que se pasa como parámetro (idema). Frecuencia de actualización: continuamente. <br><br> <a href='https://opendata.aemet.es/centrodedescargas/rssatom'\n    target='_blank'>Canales RSS</a> disponibles:\n        <ul>\n        <li>Observación convencional horaria</li>\n        </ul>",
+        "operationId": "Datos de observación. Tiempo actual._1",
+        "parameters": [
+          {
+            "name": "idema",
+            "in": "path",
+            "description": "Índicativo climatológico de la EMA",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/observacion/convencional/mensajes/tipomensaje/{tipomensaje}": {
+      "get": {
+        "tags": [
+          "observacion-convencional"
+        ],
+        "summary": "Mensajes de observación. Último elaborado.",
+        "description": "Últimos mensajes de observación. Para los SYNOP y TEMP devuelve los mensajes de las últimas 24 horas y para los CLIMAT de los 40 últimos dias. Se pasa como parámetro el tipo de mensaje que se desea (tipomensaje). El resultado de la petición es un fichero en formato tar.gz, que contiene los boletines en formato json y bufr.<br><br> <a href='https://opendata.aemet.es/centrodedescargas/rssatom'\n    target='_blank'>Canales RSS</a> disponibles:\n        <ul>\n        <li>Observación convencional mensajes: climat</li>\n        <li>Observación convencional mensajes: synop</li>\n        <li>Observación convencional mensajes: temp</li>\n        <li>Observación convencional mensajes: todos</li>\n        </ul>",
+        "operationId": "Mensajes de observación. Último elaborado.",
+        "parameters": [
+          {
+            "name": "tipomensaje",
+            "in": "path",
+            "description": " | Código | Tipo de Mensaje |\n|----------|----------|\n| climat  | climat   |\n| synop  | synop   |\n| temp  | temp  ",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/ccaa/hoy/{ccaa}": {
+      "get": {
+        "tags": [
+          "predicciones-normalizadas-texto"
+        ],
+        "summary": "Predicción CCAA hoy. Tiempo actual.",
+        "description": "Predicción para la CCAA que se pasa como parámetro con validez para mismo día que la fecha de petición. En el caso de que en la fecha de petición este producto todavía no se hubiera elaborado, se retornará el último elaborado. Actualización continuamente.",
+        "operationId": "Predicción CCAA hoy. Tiempo actual.",
+        "parameters": [
+          {
+            "name": "ccaa",
+            "in": "path",
+            "description": " | Código de CCAA | CCAA |\n|----------|----------|\n| and  | Andalucía   |\n| arn  | Aragón   |\n| ast  | Asturias  |\n| bal  | Ballears, Illes   |\n| coo  | Canarias   |\n| can  | Cantabria   |\n| cle  | Castilla y León   |\n| clm  | Castilla - La Mancha   |\n| cat  | Cataluña   |\n| val  | Comunitat Valenciana   |\n| ext  | Extremadura   |\n| gal  | Galicia   |\n| mad  | Madrid, Comunidad de    |\n| mur  | Murcia, Región de   |\n| nav  | Navarra, Comunidad Foral de   |\n| pva  | País Vasco |\n| rio  | Rioja, La",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/ccaa/hoy/{ccaa}/elaboracion/{fecha}": {
+      "get": {
+        "tags": [
+          "predicciones-normalizadas-texto"
+        ],
+        "summary": "Predicción CCAA hoy. Archivo.",
+        "description": "Predicción para la comunidad autónoma que se pasa como parámetro (ccaa) con validez para el día de fecha de elaboración que se pasa como parámetro (fecha). Periodicidad de actualización: continuamente.",
+        "operationId": "Predicción CCAA hoy. Archivo.",
+        "parameters": [
+          {
+            "name": "ccaa",
+            "in": "path",
+            "description": " | Código de CCAA | CCAA |\n|----------|----------|\n| and  | Andalucía   |\n| arn  | Aragón   |\n| ast  | Astrrias  |\n| bal  | Ballears, Illes   |\n| coo  | Canarias   |\n| can  | Cantabria   |\n| cle  | Castilla y León   |\n| clm  | Castilla - La Mancha   |\n| cat  | Cataluña   |\n| val  | Comunitat Valenciana   |\n| ext  | Extremadura   |\n| gal  | Galicia   |\n| mad  | Madrid, Comunidad de    |\n| mur  | Murcia, Región de   |\n| nav  | Navarra, Comunidad Foral de   |\n| pva  | País Vasco |\n| rio  | Rioja, La   ",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fecha",
+            "in": "path",
+            "description": "Día de elaboración (AAAA-MM-DD)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/ccaa/manana/{ccaa}": {
+      "get": {
+        "tags": [
+          "predicciones-normalizadas-texto"
+        ],
+        "summary": "Predicción CCAA mañana. Tiempo actual.",
+        "description": "Predicción para la comunidad autónoma que se pasa como parámetro para el día siguiente a la fecha de la petición. En el caso de el producto no se hubiera elaborado todavía en la fecha de petición se retornará el último producto elaborado. Periodicidad de actualización: continuamente.",
+        "operationId": "Predicción CCAA mañana. Tiempo actual.",
+        "parameters": [
+          {
+            "name": "ccaa",
+            "in": "path",
+            "description": " | Código de CCAA | CCAA |\n|----------|----------|\n| and  | Andalucía   |\n| arn  | Aragón   |\n| ast  | Astrrias  |\n| bal  | Ballears, Illes   |\n| coo  | Canarias   |\n| can  | Cantabria   |\n| cle  | Castilla y León   |\n| clm  | Castilla - La Mancha   |\n| cat  | Cataluña   |\n| val  | Comunitat Valenciana   |\n| ext  | Extremadura   |\n| gal  | Galicia   |\n| mad  | Madrid, Comunidad de    |\n| mur  | Murcia, Región de   |\n| nav  | Navarra, Comunidad Foral de   |\n| pva  | País Vasco |\n| rio  | Rioja, La   ",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/ccaa/manana/{ccaa}/elaboracion/{fecha}": {
+      "get": {
+        "tags": [
+          "predicciones-normalizadas-texto"
+        ],
+        "summary": "Predicción CCAA mañana. Archivo.",
+        "description": "Predicción para la comunidad autónoma que se pasa como parámetro (ccaa) con validez para el día siguiente a la fecha de elaboración que se pasa como parámetro (fecha). Periodicidad de actualización. continuamente.",
+        "operationId": "Predicción CCAA mañana. Archivo.",
+        "parameters": [
+          {
+            "name": "ccaa",
+            "in": "path",
+            "description": " | Código de CCAA | CCAA |\n|----------|----------|\n| and  | Andalucía   |\n| arn  | Aragón   |\n| ast  | Astrrias  |\n| bal  | Ballears, Illes   |\n| coo  | Canarias   |\n| can  | Cantabria   |\n| cle  | Castilla y León   |\n| clm  | Castilla - La Mancha   |\n| cat  | Cataluña   |\n| val  | Comunitat Valenciana   |\n| ext  | Extremadura   |\n| gal  | Galicia   |\n| mad  | Madrid, Comunidad de    |\n| mur  | Murcia, Región de   |\n| nav  | Navarra, Comunidad Foral de   |\n| pva  | País Vasco |\n| rio  | Rioja, La   ",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fecha",
+            "in": "path",
+            "description": "Día de elaboración (AAAA-MM-DD)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/ccaa/medioplazo/{ccaa}": {
+      "get": {
+        "tags": [
+          "predicciones-normalizadas-texto"
+        ],
+        "summary": "Predicción CCAA medio plazo. Tiempo actual.",
+        "description": "Predicción para la comunidad autónoma que se pasa como parámetro (ccaa) y con validez para el medio plazo a partir de la fecha de petición. En el caso de que en el fecha de la petición no se hubiera generado aún el producto, se retornará el última elaborado. Periodicidad de actualización: continuamente.",
+        "operationId": "Predicción CCAA medio plazo. Tiempo actual.",
+        "parameters": [
+          {
+            "name": "ccaa",
+            "in": "path",
+            "description": " | Código de CCAA | CCAA |\n|----------|----------|\n| and  | Andalucía   |\n| arn  | Aragón   |\n| ast  | Astrrias  |\n| bal  | Ballears, Illes   |\n| coo  | Canarias   |\n| can  | Cantabria   |\n| cle  | Castilla y León   |\n| clm  | Castilla - La Mancha   |\n| cat  | Cataluña   |\n| val  | Comunitat Valenciana   |\n| ext  | Extremadura   |\n| gal  | Galicia   |\n| mad  | Madrid, Comunidad de    |\n| mur  | Murcia, Región de   |\n| nav  | Navarra, Comunidad Foral de   |\n| pva  | País Vasco |\n| rio  | Rioja, La   ",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/ccaa/medioplazo/{ccaa}/elaboracion/{fecha}": {
+      "get": {
+        "tags": [
+          "predicciones-normalizadas-texto"
+        ],
+        "summary": "Predicción CCAA medio plazo. Archivo.",
+        "description": "Predicción de mediio plazo para la comunidad autónoma que se pasa como parámetro (ccaa) a partir de la fecha de elaboración que se pasa como parámetro (fecha). Periodicidad de actualización: continuamente.",
+        "operationId": "Predicción CCAA medio plazo. Archivo.",
+        "parameters": [
+          {
+            "name": "ccaa",
+            "in": "path",
+            "description": " | Código de CCAA | CCAA |\n|----------|----------|\n| and  | Andalucía   |\n| arn  | Aragón   |\n| ast  | Astrrias  |\n| bal  | Ballears, Illes   |\n| coo  | Canarias   |\n| can  | Cantabria   |\n| cle  | Castilla y León   |\n| clm  | Castilla - La Mancha   |\n| cat  | Cataluña   |\n| val  | Comunitat Valenciana   |\n| ext  | Extremadura   |\n| gal  | Galicia   |\n| mad  | Madrid, Comunidad de    |\n| mur  | Murcia, Región de   |\n| nav  | Navarra, Comunidad Foral de   |\n| pva  | País Vasco |\n| rio  | Rioja, La   ",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fecha",
+            "in": "path",
+            "description": "Día de elaboración (AAAA-MM-DD)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/ccaa/pasadomanana/{ccaa}": {
+      "get": {
+        "tags": [
+          "predicciones-normalizadas-texto"
+        ],
+        "summary": "Predicción CCAA pasado mañana. Tiempo actual.",
+        "description": "Predicción para la comunidad autónoma que se pasa como parámetro (ccaa) y validez para el medio plazo a partir de la fecha de la petición. En el caso de que en la fecha de la petición dicho producto aún no se hubiera generado retornará el último de este tipo que se hubiera generado.  Periodicidad de actualización: continuamente.",
+        "operationId": "Predicción CCAA pasado mañana. Tiempo actual.",
+        "parameters": [
+          {
+            "name": "ccaa",
+            "in": "path",
+            "description": " | Código de CCAA | CCAA |\n|----------|----------|\n| and  | Andalucía   |\n| arn  | Aragón   |\n| ast  | Astrrias  |\n| bal  | Ballears, Illes   |\n| coo  | Canarias   |\n| can  | Cantabria   |\n| cle  | Castilla y León   |\n| clm  | Castilla - La Mancha   |\n| cat  | Cataluña   |\n| val  | Comunitat Valenciana   |\n| ext  | Extremadura   |\n| gal  | Galicia   |\n| mad  | Madrid, Comunidad de    |\n| mur  | Murcia, Región de   |\n| nav  | Navarra, Comunidad Foral de   |\n| pva  | País Vasco |\n| rio  | Rioja, La   ",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/ccaa/pasadomanana/{ccaa}/elaboracion/{fecha}": {
+      "get": {
+        "tags": [
+          "predicciones-normalizadas-texto"
+        ],
+        "summary": "Predicción CCAA pasado mañana. Archivo.",
+        "description": "Predicción para la comunidad autónoma que se pasa como parámetro (ccaa) y validez para pasado mañana a partir de la fecha de elaboración que se pasa como parámetro (fecha). Periodicidad de actualización: continuamente.",
+        "operationId": "Predicción CCAA pasado mañana. Archivo.",
+        "parameters": [
+          {
+            "name": "ccaa",
+            "in": "path",
+            "description": " | Código de CCAA | CCAA |\n|----------|----------|\n| and  | Andalucía   |\n| arn  | Aragón   |\n| ast  | Astrrias  |\n| bal  | Ballears, Illes   |\n| coo  | Canarias   |\n| can  | Cantabria   |\n| cle  | Castilla y León   |\n| clm  | Castilla - La Mancha   |\n| cat  | Cataluña   |\n| val  | Comunitat Valenciana   |\n| ext  | Extremadura   |\n| gal  | Galicia   |\n| mad  | Madrid, Comunidad de    |\n| mur  | Murcia, Región de   |\n| nav  | Navarra, Comunidad Foral de   |\n| pva  | País Vasco |\n| rio  | Rioja, La   ",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fecha",
+            "in": "path",
+            "description": "Día de elaboración (AAAA-MM-DD)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/especifica/montaña/pasada/area/{area}": {
+      "get": {
+        "tags": [
+          "predicciones-especificas"
+        ],
+        "summary": "Predicción de montaña. Tiempo pasado.",
+        "description": "Breve resumen con lo más significativo de las condiciones meteorológicas registradas en la zona de montaña que se pasa como parámetro (area) en las últimas 24-36 horas.<br><br> <a href='https://opendata.aemet.es/centrodedescargas/rssatom'\n    target='_blank'>Canales RSS</a> disponibles:\n        <ul>\n        <li>Predicción montaña todos</li>\n        <li>Predicción montaña pasado</li>\n        <li>Predicción montaña área</li>\n        </ul>",
+        "operationId": "Predicción de montaña. Tiempo pasado.",
+        "parameters": [
+          {
+            "name": "area",
+            "in": "path",
+            "description": " | Código de Área Montañosa | Área Montañosa |\n|----------|----------|\n| peu1 | Picos de Europa   |\n| nav1  | Pirineo Navarro   |\n| arn1  | Pirineo Aragonés  |\n| cat1  | Pirineo Catalán   |\n| rio1  | Ibérica Riojana   |\n| arn2  | Ibérica Aragonesa   |\n| mad2  | Sierras de Guadarrama y Somosierra  |\n| gre1  | Sierra de Gredos   |\n| nev1  | Sierra Nevada",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/especifica/montaña/pasada/area/{area}/dia/{dia}": {
+      "get": {
+        "tags": [
+          "predicciones-especificas"
+        ],
+        "summary": "Predicción de montaña. Tiempo actual.",
+        "description": "Predicción meteorológica para la zona montañosa que se pasa como parámetro (area) con validez para el día (día).  Periodicidad de actualización: continuamente.<br><br> <a href='https://opendata.aemet.es/centrodedescargas/rssatom'\n    target='_blank'>Canales RSS</a> disponibles:\n        <ul>\n        <li>Predicción montaña todos</li>\n        <li>Predicción montaña actual</li>\n        <li>Predicción montaña área</li>\n        </ul>",
+        "operationId": "Predicción de montaña. Tiempo actual.",
+        "parameters": [
+          {
+            "name": "area",
+            "in": "path",
+            "description": " | Código de Área Montañosa | Área Montañosa |\n|----------|----------|\n| peu1 | Picos de Europa   |\n| nav1  | Pirineo Navarro   |\n| arn1  | Pirineo Aragonés  |\n| cat1  | Pirineo Catalán   |\n| rio1  | Ibérica Riojana   |\n| arn2  | Ibérica Aragonesa   |\n| mad2  | Sierras de Guadarrama y Somosierra  |\n| gre1  | Sierra de Gredos   |\n| nev1  | Sierra Nevada",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dia",
+            "in": "path",
+            "description": " | Código de día | Día |\n|----------|----------|\n| 0 | día actual  |\n| 1  | d+1 (mañana)   |\n| 2  | d+2 (pasado mañana)  |\n| 3  | d+3 (siguente a pasado mañana)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/especifica/nivologica/{area}": {
+      "get": {
+        "tags": [
+          "predicciones-especificas"
+        ],
+        "summary": "Información nivológica.",
+        "description": "Información nivológica para la zona montañosa que se pasa como parámetro (area).",
+        "operationId": "Informacion nivologica.",
+        "parameters": [
+          {
+            "name": "area",
+            "in": "path",
+            "description": " | Código de  Área Montañosa |  Área Montañosa |\n|----------|----------|\n| 0 | Pirineo Catalán  |\n| 1  | Pirineo Navarro y Aragonés",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/especifica/municipio/diaria/{municipio}": {
+      "get": {
+        "tags": [
+          "predicciones-especificas"
+        ],
+        "summary": "Predicción por municipios diaria. Tiempo actual.",
+        "description": "Predicción diaria para el municipio que se pasa como parámetro (municipio). Periodicidad de actualización: continuamente.<br><br> <a href='https://opendata.aemet.es/centrodedescargas/rssatom'\n    target='_blank'>Canales RSS</a> disponibles:\n        <ul>\n        <li>Predicción municipio</li>\n        </ul>",
+        "operationId": "Predicción por municipios diaria. Tiempo actual.",
+        "parameters": [
+          {
+            "name": "municipio",
+            "in": "path",
+            "description": "<a href='https://www.ine.es/daco/daco42/codmun/diccionario24.xlsx'\ntarget='_blank'>Código de municipio</a>",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/especifica/municipio/horaria/{municipio}": {
+      "get": {
+        "tags": [
+          "predicciones-especificas"
+        ],
+        "summary": "Predicción por municipios horaria. Tiempo actual.",
+        "description": "Predicción horaria para el municipio que se pasa como parámetro (municipio). Presenta la información de hora en hora hasta 48 horas.<br><br> <a href='https://opendata.aemet.es/centrodedescargas/rssatom'\n    target='_blank'>Canales RSS</a> disponibles:\n        <ul>\n        <li>Predicción municipio</li>\n        </ul>",
+        "operationId": "Predicción por municipios horaria. Tiempo actual.",
+        "parameters": [
+          {
+            "name": "municipio",
+            "in": "path",
+            "description": "<a href='https://www.ine.es/daco/daco42/codmun/diccionario24.xlsx'\ntarget='_blank'>Código de municipio</a>",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/especifica/playa/{playa}": {
+      "get": {
+        "tags": [
+          "predicciones-especificas"
+        ],
+        "summary": "Predicción para las playas. Tiempo actual.",
+        "description": "La predicción diaria de la playa que se pasa como parámetro. Establece el estado de nubosidad para unas horas determinadas, las 11 y las 17 hora oficial. Se analiza también si se espera precipitación en el entorno de esas horas, entre las 08 y las 14 horas y entre las 14 y 20 horas.<br><br> <a href='https://opendata.aemet.es/centrodedescargas/rssatom'\n    target='_blank'>Canales RSS</a> disponibles:\n        <ul>\n        <li>Predicción playa</li>\n        </ul>",
+        "operationId": "Predicción para las playas. Tiempo actual.",
+        "parameters": [
+          {
+            "name": "playa",
+            "in": "path",
+            "description": "<a\nhref='https://www.aemet.es/documentos/es/eltiempo/prediccion/playas/Playas_codigos.csv'\ntarget='_blank'>Código de playa</a>",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/especifica/uvi/{dia}": {
+      "get": {
+        "tags": [
+          "predicciones-especificas"
+        ],
+        "summary": "Predicción de radiación ultravioleta (UVI).",
+        "description": "Predicción de Índice de radiación UV máximo en condiciones de cielo despejado para el día seleccionado.<br><br> <a href='https://opendata.aemet.es/centrodedescargas/rssatom'\n    target='_blank'>Canales RSS</a> disponibles:\n        <ul>\n        <li>Predicción de radiación ultravioleta (UVI)</li>\n        </ul>",
+        "operationId": "Predicción de radiación ultravioleta (UVI).",
+        "parameters": [
+          {
+            "name": "dia",
+            "in": "path",
+            "description": " | Código de día | Día |\n|----------|----------|\n| 0 | día actual  |\n| 1  | d+1 (mañana)   |\n| 2  | d+2 (pasado mañana)  |\n| 3  | d+3 (dentro de 3 días) |\n| 4  | d+4 (dentro de 4 días)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/maritima/altamar/area/{area}": {
+      "get": {
+        "tags": [
+          "prediccion-maritima"
+        ],
+        "summary": "Predicción marítima de alta mar.",
+        "description": "Predicción para un periodo de 24 horas de las condiciones meteorológicas para el área marítima pasada por parámetro.",
+        "operationId": "Predicción marítima de alta mar.",
+        "parameters": [
+          {
+            "name": "area",
+            "in": "path",
+            "description": " | Código | Área de Alta Mar |\n|----------|----------|\n| 0 | Océano Atlántico al sur de 35º N   |\n| 1  | Océano Atlántico al norte de 30º N   |\n| 2  | Mar Mediterráneo",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/maritima/costera/costa/{costa}": {
+      "get": {
+        "tags": [
+          "prediccion-maritima"
+        ],
+        "summary": "Predicción marítima costera.",
+        "description": "Predicción para un periodo de 24 horas de las condiciones meteorológicas para la zona costera pasada por parámetro.",
+        "operationId": "Predicción marítima costera.",
+        "parameters": [
+          {
+            "name": "costa",
+            "in": "path",
+            "description": " | Código | Área Costera |\n|----------|----------|\n| 42 | Costa de Andalucía Occidental y Ceuta   |\n| 47  | Costa de Andalucía Oriental y Melilla   |\n| 41  | Costa de Asturias, Cantabria y País Vasco  |\n| 45  | Costa de Cataluña   |\n| 40  | Costa de Galicia   |\n| 44  | Costa de Illes Balears   |\n| 43  | Costa de las Islas Canarias  |\n| 46  | Costa de Valencia y Murcia",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/nacional/hoy": {
+      "get": {
+        "tags": [
+          "predicciones-normalizadas-texto"
+        ],
+        "summary": "Predicción nacional hoy. Última elaborada.",
+        "description": "Predicción nacional para el día actual a la fecha de elaboración en formato texto. Actualización diaria. Hay días en los que este producto no se realiza. En ese caso se devuelve la predicción nacional última que se elaboró.",
+        "operationId": "Predicción nacional hoy. Tiempo actual.",
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/nacional/hoy/elaboracion/{fecha}": {
+      "get": {
+        "tags": [
+          "predicciones-normalizadas-texto"
+        ],
+        "summary": "Predicción nacional hoy. Archivo.",
+        "description": "Predicción nacional para el día correspondiente a la fecha que se pasa como parámetro en en formato texto. Actualización diaria. Hay días en los que este producto no se realiza. En ese caso se devuelve un 404 producto no existente.",
+        "operationId": "Predicción nacional hoy. Archivo.",
+        "parameters": [
+          {
+            "name": "fecha",
+            "in": "path",
+            "description": "Fecha en formato (AAAA-MM-DD)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/nacional/manana": {
+      "get": {
+        "tags": [
+          "predicciones-normalizadas-texto"
+        ],
+        "summary": "Predicción nacional mañana. Tiempo actual.",
+        "description": "Predicción nacional para el día siguiente a la fecha de elaboración. En este caso la fecha de elaboración es el día actual. Actualización diaria. En el caso de que en el día actual  todavía no se haya elaborado se devolverá el último producto de predicción nacional para mañana elaborado.",
+        "operationId": "Predicción nacional mañana. Tiempo actual.",
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/nacional/manana/elaboracion/{fecha}": {
+      "get": {
+        "tags": [
+          "predicciones-normalizadas-texto"
+        ],
+        "summary": "Predicción nacional mañana. Archivo.",
+        "description": "Predicción nacional para el día siguiente a la fecha de elaboración. En este caso la fecha de elaboración es la fecha que se pasa como parámetro. Actualización diaria.",
+        "operationId": "Predicción nacional mañana. Archivo.",
+        "parameters": [
+          {
+            "name": "fecha",
+            "in": "path",
+            "description": "Día (AAAA-MM-DD)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/nacional/medioplazo": {
+      "get": {
+        "tags": [
+          "predicciones-normalizadas-texto"
+        ],
+        "summary": "Predicción nacional medio plazo. Tiempo actual.",
+        "description": "Predicción nacional para medio plazo siguiente a la fecha de elaboración. En este caso la fecha de elaboración es el día actual. Actualización diaria. En el caso de que en el día actual  todavía no se haya elaborado se devolverá el último producto de predicción nacional para medio plazo elaborado.",
+        "operationId": "Predicción nacional medio plazo. Tiempo actual.",
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/nacional/medioplazo/elaboracion/{fecha}": {
+      "get": {
+        "tags": [
+          "predicciones-normalizadas-texto"
+        ],
+        "summary": "Predicción nacional medio plazo. Archivo.",
+        "description": "Predicción nacional para el medio plazo siguiente a la fecha de elaboración. En este caso, la fecha de elaboración es la fecha que se pasa como parámetro. Actualización diaria.",
+        "operationId": "Predicción nacional medio plazo. Archivo.",
+        "parameters": [
+          {
+            "name": "fecha",
+            "in": "path",
+            "description": "Día (AAAA-MM-DD)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/nacional/pasadomanana": {
+      "get": {
+        "tags": [
+          "predicciones-normalizadas-texto"
+        ],
+        "summary": "Predicción nacional pasado mañana. Tiempo actual.",
+        "description": "Predicción nacional para pasado mañana siguiente a la fecha de elaboración. En este caso la fecha de elaboración es el día actual. Actualización diaria. En el caso de que en el día actual  todavía no se haya elaborado se devolverá el último producto de predicción nacional para pasado mañana elaborado.",
+        "operationId": "Predicción nacional pasado mañana. Tiempo actual.",
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/nacional/pasadomanana/elaboracion/{fecha}": {
+      "get": {
+        "tags": [
+          "predicciones-normalizadas-texto"
+        ],
+        "summary": "Predicción nacional pasado mañana. Archivo.",
+        "description": "Predicción nacional para pasado mañana siguiente a la fecha de elaboración. En este caso, la fecha de elaboración es la fecha que se pasa como parámetro. Actualización diaria.",
+        "operationId": "Predicción nacional pasado mañana. Archivo.",
+        "parameters": [
+          {
+            "name": "fecha",
+            "in": "path",
+            "description": "Día (AAAA-MM-DD)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/nacional/tendencia": {
+      "get": {
+        "tags": [
+          "predicciones-normalizadas-texto"
+        ],
+        "summary": "Predicción nacional tendencia. Tiempo actual.",
+        "description": "Predicción nacional para tendencia siguiente a la fecha de elaboración. En este caso la fecha de elaboración es el día actual. Actualización diaria. En el caso de que en el día actual  todavía no se haya elaborado se devolverá el último producto de predicción nacional para tendencia elaborado.",
+        "operationId": "Predicción nacional tendencia. Tiempo actual.",
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/nacional/tendencia/elaboracion/{fecha}": {
+      "get": {
+        "tags": [
+          "predicciones-normalizadas-texto"
+        ],
+        "summary": "Predicción nacional tendencia. Archivo.",
+        "description": "Predicción nacional para tendencia siguiente a la fecha de elaboración. En este caso, la fecha de elaboración es la fecha que se pasa como parámetro. Actualización diaria.",
+        "operationId": "Predicción nacional tendencia. Archivo.",
+        "parameters": [
+          {
+            "name": "fecha",
+            "in": "path",
+            "description": "Día (AAAA-MM-DD)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/provincia/hoy/{provincia}": {
+      "get": {
+        "tags": [
+          "predicciones-normalizadas-texto"
+        ],
+        "summary": "Predicción provincial e insular hoy. Tiempo actual.",
+        "description": "Predicción del día actual para la provincia o isla que se pasa como parámetro. En el caso de que este producto no se haya elaborado todavía en el día actual, se retorna el último elaborado. Actualización continua y fija a las 14:00 Hora Oficial Peninsular.",
+        "operationId": "Predicción provincial e insular hoy. Tiempo actual.",
+        "parameters": [
+          {
+            "name": "provincia",
+            "in": "path",
+            "description": " | Código  | Provincia / Isla |\n|----------|----------|\n| 01  | Araba/Álaba   |\n| 01  | Araba/Álava   |\n| 02  | Albacete   |\n| 03  | Alacant/Alicante  |\n| 04  | Almería   |\n| 33  | Asturias   |\n| 05  | Ávila   |\n| 06  | Badajoz   |\n|  08  | Barcelona   |\n| 48  | Bizkaia   |\n| 09  | Burgos   |\n| 10  | Cáceres   |\n| 11  | Cádiz   |\n| 39  | Cantabria   |\n| 12  | Castelló/Castellón   |\n| 51  | Ceuta   |\n| 13  | Ciudad Real   |\n| 14  | Córdoba   |\n| 15  | A Coruña   |\n| 16  | Cuenca   |\n| 17  | Girona   |\n| 18  | Granada   |\n| 19  | Guadalajara   |\n| 20  | Gipuzkoa   |\n| 21  | Huelva   |\n| 22  | Huesca   |\n| 071  | Isla de Menorca   |\n| 072  | Isla de Mallorca   |\n| 073  | Islas de Ibiza y Formentera   |\n|  351  | Isla de Lanzarote  |\n| 352  | Isla de Fuerteventura  |\n| 353  | Isla de Gran Canaria   | \n| 381  | Isla de Tenerife   |\n| 382  | Isla de La Gomera   |\n| 383  | Isla de La Palma   |\n| 384  | Isla de El Hierro   |\n| 23  | Jaén   |\n| 24  | León   |\n| 25  | Lleida   |\n| 27  | Lugo   |\n| 28  | Madrid   |\n| 29  | Málaga   |\n| 52  | Melilla   |\n| 30  | Murcia   |\n| 31  | Navarra   |\n| 32  | Ourense   |\n| 34  | Palencia   |\n|  36  | Pontevedra   |\n| 26  | La Rioja   |\n| 37  | Salamanca   |\n|  40  | Segovia   |\n| 41  | Sevilla   |\n| 42  | Soria   |\n| 43  | Tarragona   |\n| 44  | Teruel   |\n| 45  | Toledo   |\n| 46  | València/Valencia   |\n| 47  | Valladolid   |\n| 49  | Zamora   |\n| 50  | Zaragoza   |\n| ",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/provincia/hoy/{provincia}/elaboracion/{fecha}": {
+      "get": {
+        "tags": [
+          "predicciones-normalizadas-texto"
+        ],
+        "summary": "Predicción provincial e insular hoy. Archivo.",
+        "description": "Predicción del día siguiente a la fecha que se pasa como parámetro para la provincia o isla que se pasa como parámetro. Actualización continua y fija a las 14:00 Hora Oficial Peninsular del día que se pasa como parámetro.",
+        "operationId": "Predicción provincial e insular hoy. Archivo.",
+        "parameters": [
+          {
+            "name": "provincia",
+            "in": "path",
+            "description": " | Código  | Provincia / Isla |\n|----------|----------|\n| 01  | Araba/Álaba   |\n| 01  | Araba/Álava   |\n| 02  | Albacete   |\n| 03  | Alacant/Alicante  |\n| 04  | Almería   |\n| 33  | Asturias   |\n| 05  | Ávila   |\n| 06  | Badajoz   |\n|  08  | Barcelona   |\n| 48  | Bizkaia   |\n| 09  | Burgos   |\n| 10  | Cáceres   |\n| 11  | Cádiz   |\n| 39  | Cantabria   |\n| 12  | Castelló/Castellón   |\n| 51  | Ceuta   |\n| 13  | Ciudad Real   |\n| 14  | Córdoba   |\n| 15  | A Coruña   |\n| 16  | Cuenca   |\n| 17  | Girona   |\n| 18  | Granada   |\n| 19  | Guadalajara   |\n| 20  | Gipuzkoa   |\n| 21  | Huelva   |\n| 22  | Huesca   |\n| 071  | Isla de Menorca   |\n| 072  | Isla de Mallorca   |\n| 073  | Islas de Ibiza y Formentera   |\n|  351  | Isla de Lanzarote  |\n| 352  | Isla de Fuerteventura  |\n| 353  | Isla de Gran Canaria   | \n| 381  | Isla de Tenerife   |\n| 382  | Isla de La Gomera   |\n| 383  | Isla de La Palma   |\n| 384  | Isla de El Hierro   |\n| 23  | Jaén   |\n| 24  | León   |\n| 25  | Lleida   |\n| 27  | Lugo   |\n| 28  | Madrid   |\n| 29  | Málaga   |\n| 52  | Melilla   |\n| 30  | Murcia   |\n| 31  | Navarra   |\n| 32  | Ourense   |\n| 34  | Palencia   |\n|  36  | Pontevedra   |\n| 26  | La Rioja   |\n| 37  | Salamanca   |\n|  40  | Segovia   |\n| 41  | Sevilla   |\n| 42  | Soria   |\n| 43  | Tarragona   |\n| 44  | Teruel   |\n| 45  | Toledo   |\n| 46  | València/Valencia   |\n| 47  | Valladolid   |\n| 49  | Zamora   |\n| 50  | Zaragoza   |\n| ",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fecha",
+            "in": "path",
+            "description": "Día de elaboración (AAAA-MM-DD)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/provincia/manana/{provincia}": {
+      "get": {
+        "tags": [
+          "predicciones-normalizadas-texto"
+        ],
+        "summary": "Predicción provincial e insular mañana. Tiempo actual.",
+        "description": "Predicción del día siguiente para la provincia o isla que se pasa como parámetro. En el caso de que este producto no se haya elaborado todavía en el día actual, se retorna el último elaborado. Actualización continua y fija a las 14:00 Hora Oficial Peninsular.",
+        "operationId": "Predicción provincial e insular mañana. Tiempo actual.",
+        "parameters": [
+          {
+            "name": "provincia",
+            "in": "path",
+            "description": " | Código  | Provincia / Isla |\n|----------|----------|\n| 01  | Araba/Álaba   |\n| 01  | Araba/Álava   |\n| 02  | Albacete   |\n| 03  | Alacant/Alicante  |\n| 04  | Almería   |\n| 33  | Asturias   |\n| 05  | Ávila   |\n| 06  | Badajoz   |\n|  08  | Barcelona   |\n| 48  | Bizkaia   |\n| 09  | Burgos   |\n| 10  | Cáceres   |\n| 11  | Cádiz   |\n| 39  | Cantabria   |\n| 12  | Castelló/Castellón   |\n| 51  | Ceuta   |\n| 13  | Ciudad Real   |\n| 14  | Córdoba   |\n| 15  | A Coruña   |\n| 16  | Cuenca   |\n| 17  | Girona   |\n| 18  | Granada   |\n| 19  | Guadalajara   |\n| 20  | Gipuzkoa   |\n| 21  | Huelva   |\n| 22  | Huesca   |\n| 071  | Isla de Menorca   |\n| 072  | Isla de Mallorca   |\n| 073  | Islas de Ibiza y Formentera   |\n|  351  | Isla de Lanzarote  |\n| 352  | Isla de Fuerteventura  |\n| 353  | Isla de Gran Canaria   | \n| 381  | Isla de Tenerife   |\n| 382  | Isla de La Gomera   |\n| 383  | Isla de La Palma   |\n| 384  | Isla de El Hierro   |\n| 23  | Jaén   |\n| 24  | León   |\n| 25  | Lleida   |\n| 27  | Lugo   |\n| 28  | Madrid   |\n| 29  | Málaga   |\n| 52  | Melilla   |\n| 30  | Murcia   |\n| 31  | Navarra   |\n| 32  | Ourense   |\n| 34  | Palencia   |\n|  36  | Pontevedra   |\n| 26  | La Rioja   |\n| 37  | Salamanca   |\n|  40  | Segovia   |\n| 41  | Sevilla   |\n| 42  | Soria   |\n| 43  | Tarragona   |\n| 44  | Teruel   |\n| 45  | Toledo   |\n| 46  | València/Valencia   |\n| 47  | Valladolid   |\n| 49  | Zamora   |\n| 50  | Zaragoza   |\n| ",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/prediccion/provincia/manana/{provincia}/elaboracion/{fecha}": {
+      "get": {
+        "tags": [
+          "predicciones-normalizadas-texto"
+        ],
+        "summary": "Predicción provincial e insular mañana. Archivo.",
+        "description": "Predicción del día siguiente a la fecha que se pasa como parámetro para la provincia o isla que se pasa como parámetro. Actualización continua y fija a las 14:00 Hora Oficial Peninsular del día que se pasa como parámetro.",
+        "operationId": "Predicción provincial o insular mañana. Archivo.",
+        "parameters": [
+          {
+            "name": "provincia",
+            "in": "path",
+            "description": " | Código  | Provincia / Isla |\n|----------|----------|\n| 01  | Araba/Álaba   |\n| 01  | Araba/Álava   |\n| 02  | Albacete   |\n| 03  | Alacant/Alicante  |\n| 04  | Almería   |\n| 33  | Asturias   |\n| 05  | Ávila   |\n| 06  | Badajoz   |\n|  08  | Barcelona   |\n| 48  | Bizkaia   |\n| 09  | Burgos   |\n| 10  | Cáceres   |\n| 11  | Cádiz   |\n| 39  | Cantabria   |\n| 12  | Castelló/Castellón   |\n| 51  | Ceuta   |\n| 13  | Ciudad Real   |\n| 14  | Córdoba   |\n| 15  | A Coruña   |\n| 16  | Cuenca   |\n| 17  | Girona   |\n| 18  | Granada   |\n| 19  | Guadalajara   |\n| 20  | Gipuzkoa   |\n| 21  | Huelva   |\n| 22  | Huesca   |\n| 071  | Isla de Menorca   |\n| 072  | Isla de Mallorca   |\n| 073  | Islas de Ibiza y Formentera   |\n|  351  | Isla de Lanzarote  |\n| 352  | Isla de Fuerteventura  |\n| 353  | Isla de Gran Canaria   | \n| 381  | Isla de Tenerife   |\n| 382  | Isla de La Gomera   |\n| 383  | Isla de La Palma   |\n| 384  | Isla de El Hierro   |\n| 23  | Jaén   |\n| 24  | León   |\n| 25  | Lleida   |\n| 27  | Lugo   |\n| 28  | Madrid   |\n| 29  | Málaga   |\n| 52  | Melilla   |\n| 30  | Murcia   |\n| 31  | Navarra   |\n| 32  | Ourense   |\n| 34  | Palencia   |\n|  36  | Pontevedra   |\n| 26  | La Rioja   |\n| 37  | Salamanca   |\n|  40  | Segovia   |\n| 41  | Sevilla   |\n| 42  | Soria   |\n| 43  | Tarragona   |\n| 44  | Teruel   |\n| 45  | Toledo   |\n| 46  | València/Valencia   |\n| 47  | Valladolid   |\n| 49  | Zamora   |\n| 50  | Zaragoza   |\n| ",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fecha",
+            "in": "path",
+            "description": "Día de elaboración (AAAA-MM-DD)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/productos/climatologicos/balancehidrico/{anio}/{decena}": {
+      "get": {
+        "tags": [
+          "productos-climatologicos"
+        ],
+        "summary": "Balance hídrico nacional (documento).",
+        "description": "Se obtiene, para la decema y el año pasados por parámetro, el Boletín Hídrico Nacional que se elabora cada diez días. Se presenta información resumida de forma distribuida para todo el territorio nacional de diferentes variables, en las que se incluye informaciones de la precipitación y la evapotranspiración potencial acumuladas desde el 1 de septiembre.",
+        "operationId": "Balance hídrico nacional (documento).",
+        "parameters": [
+          {
+            "name": "anio",
+            "in": "path",
+            "description": "Año (AAAA)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "decena",
+            "in": "path",
+            "description": "Decena de 01 (primera decena) a 36 (última decena)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/productos/climatologicos/resumenclimatologico/nacional/{anio}/{mes}": {
+      "get": {
+        "tags": [
+          "productos-climatologicos"
+        ],
+        "summary": "Resumen mensual climatológico nacional (documento).",
+        "description": "Resumen climatológico nacional, para el año y mes pasado por parámetro, sobre el estado del clima y la evolución de las principales variables climáticas, en especial temperatura y precipitación, a nivel mensual, estacional y anual.",
+        "operationId": "Resumen mensual climatológico nacional (documento).",
+        "parameters": [
+          {
+            "name": "anio",
+            "in": "path",
+            "description": "Año (AAAA)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mes",
+            "in": "path",
+            "description": "Mes (mm)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/productos/climatologicos/capasshape/{tipoestacion}": {
+      "get": {
+        "tags": [
+          "productos-climatologicos"
+        ],
+        "summary": "Capas SHAPE de estaciones climatológicas de AEMET.",
+        "description": "Capas SHAPE de las distintas estaciones climatológicas de AEMET: automáticas, completas, pluviométricas y termométricas.",
+        "operationId": "Capas SHAPE de estaciones climatológicas.",
+        "parameters": [
+          {
+            "name": "tipoestacion",
+            "in": "path",
+            "description": " | Código | Tipo de Estación |\n|----------|----------|\n| automaticas  | Estaciones Automáticas   |\n| completas  | Estaciones Completas   |\n| pluviometricas  | Estaciones Pluviométricas   |\n| termometricas  | Estaciones Termométricas   ",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/red/especial/contaminacionfondo/estacion/{nombre_estacion}": {
+      "get": {
+        "tags": [
+          "redes-especiales"
+        ],
+        "summary": "Datos de contaminación de fondo. Tiempo actual.",
+        "description": "Ficheros diarios con datos diezminutales de la estación de la red de contaminación de fondo EMEP/VAG/CAMP pasada por parámetro, de temperatura, presión, humedad, viento (dirección y velocidad), radiación global, precipitación y 4 componentes químicos: O3,SO2,NO,NO2 y PM10. Los datos se encuentran en formato FINN (propio del Ministerio de Medio Ambiente). Periodicidad: cada hora.",
+        "operationId": "Datos de contaminación de fondo. Tiempo actual.",
+        "parameters": [
+          {
+            "name": "nombre_estacion",
+            "in": "path",
+            "description": " | Código | Estación de la Red EMEP |\n|----------|----------|\n| 11  | Barcarrota (Badajoz)   |\n| 10  | Cabo de Creus (Girona)   |\n| 09  | Campisábalos (Guadalajara)   |\n| 17  | Doñana (Huelva)  |\n| 14  | Els Torms (Lleida)   |\n| 06  | Mahón (Illes Balears)   |\n| 08  | Niembro-Llanes (Asturias)   |\n| 05  | Noia (A Coruña)   |\n| 16  | O Saviñao (Lugo)   |\n| 13  | Peñausende (Zamora)   |\n| 01  | San Pablo de los Montes (Toledo)   |\n| 07  | Víznar (Granada)   |\n| 12  | Zarra (Valencia) ",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/red/especial/ozono": {
+      "get": {
+        "tags": [
+          "redes-especiales"
+        ],
+        "summary": "Contenido total de ozono. Tiempo actual.",
+        "description": "Dato medio diario de contenido total de ozono. Cada 24 h (actualmente, en fines de semana, festivos y vacaciones no se genera por la falta de personal en el Centro Radiométrico Nacional).",
+        "operationId": "Contenido total de ozono. Tiempo actual.",
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/red/especial/perfilozono/estacion/{estacion}": {
+      "get": {
+        "tags": [
+          "redes-especiales"
+        ],
+        "summary": "Perfiles verticales de ozono. Tiempo actual.",
+        "description": "Perfil Vertical de Ozono de la estación pasada por parámetro. Periodicidad: cada 7 días.",
+        "operationId": "Perfiles verticales de ozono. Tiempo actual.",
+        "parameters": [
+          {
+            "name": "estacion",
+            "in": "path",
+            "description": " | Código | Estación |\n|----------|----------|\n| canarias  | Izaña   |\n| peninsula  | Madrid   ",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/red/especial/radiacion": {
+      "get": {
+        "tags": [
+          "redes-especiales"
+        ],
+        "summary": "Datos de radiación global, directa o difusa. Tiempo actual.",
+        "description": "Datos horarios (HORA SOLAR VERDADERA) acumulados de radiación  global, directa, difusa e infrarroja, y datos semihorarios  (HORA SOLAR VERDADERA) acumulados de radiación ultravioleta eritemática.Datos diarios acumulados  de radiación global, directa, difusa, ultravioleta eritemática e infrarroja. Periodicidad: Cada 24h (actualmente en fines de semana, festivos y vacaciones, no se genera por la ausencia de personal en el Centro Radiométrico Nacional).",
+        "operationId": "Datos de radiación global, directa o difusa. Tiempo actual.",
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/red/radar/nacional": {
+      "get": {
+        "tags": [
+          "red-radares"
+        ],
+        "summary": "Imagen composición nacional radares. Tiempo actual estándar.",
+        "description": "Imagen composición nacional radares. Tiempo actual estándar. Periodicidad: 30 minutos.",
+        "operationId": "Imagen composición nacional radares. Tiempo actual estándar.",
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/red/radar/regional/{radar}": {
+      "get": {
+        "tags": [
+          "red-radares"
+        ],
+        "summary": "Imagen gráfica radar regional. Tiempo actual estándar.",
+        "description": "Imagen del radar regional de la región pasada por parámetro. Tiempo actual estándar. Periodicidad: 10 minutos.",
+        "operationId": "Radar Regional",
+        "parameters": [
+          {
+            "name": "radar",
+            "in": "path",
+            "description": " | Código | Radar |\n|----------|----------|\n| am  | Almería   |\n| sa  | Asturias   |\n| pm  | Illes Balears   |\n| ba  | Barcelona  |\n| cc  | Cáceres   |\n| co  | A Coruña   |\n| ma  | Madrid   |\n| ml  | Málaga   |\n| mu  | Murcia   |\n| vd  | Palencia   |\n| ca  | Las Palmas   |\n| se  | Sevilla   |\n| va  | Valencia   |\n| ss  | Vizcaya   |\n| za  | Zaragoza   ",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/red/rayos/mapa": {
+      "get": {
+        "tags": [
+          "red-rayos"
+        ],
+        "summary": "Mapa con los rayos registrados en periodo standard. Último elaborado.",
+        "description": "Imagen de las descargas caídas en el territorio nacional durante un período de 12 horas.",
+        "operationId": "Mapa con los rayos registrados en periodo standard. Último elaborado.",
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/satelites/producto/nvdi": {
+      "get": {
+        "tags": [
+          "informacion-satelite"
+        ],
+        "summary": "Índice normalizado de vegetación.",
+        "description": "Esta imagen se realiza con una combinación de los datos del canal visible y del infrarrojo cercano del satélite NOAA-19, que nos da una idea del desarrollo de la vegetación. Esto es así debido a que la vegetación absorbe fuertemente la radiación del canal visible, pero refleja fuertemente la del infrarrojo cercano. Esta imagen se renueva los jueves a última hora y contiene los datos acumulados de la última semana.",
+        "operationId": "Índice normalizado de vegetación.",
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/satelites/producto/sst": {
+      "get": {
+        "tags": [
+          "informacion-satelite"
+        ],
+        "summary": "Temperatura del agua del mar.",
+        "description": "Imagen obtenida con una combinación de los datos de los canales infrarrojos del satélite NOAA-19, que nos da la temperatura de la superficie del mar. Esta imagen se renueva todos los días a última hora y contiene los datos acumulados de los últimos siete días.",
+        "operationId": "Temperatura del agua del mar.",
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/valores/climatologicos/diarios/datos/fechaini/{fechaIniStr}/fechafin/{fechaFinStr}/estacion/{idema}": {
+      "get": {
+        "tags": [
+          "valores-climatologicos"
+        ],
+        "summary": "Climatologías diarias.",
+        "description": "Valores climatológicos para el rango de fechas y la estación seleccionada. Periodicidad: 1 vez al día.",
+        "operationId": "Climatologías diarias.",
+        "parameters": [
+          {
+            "name": "fechaIniStr",
+            "in": "path",
+            "description": "Fecha Inicial (AAAA-MM-DDTHH:MM:SSUTC)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fechaFinStr",
+            "in": "path",
+            "description": "Fecha Final (AAAA-MM-DDTHH:MM:SSUTC)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "idema",
+            "in": "path",
+            "description": "Indicativo climatológico de la EMA. Puede introducir varios indicativos separados por comas (,)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/valores/climatologicos/diarios/datos/fechaini/{fechaIniStr}/fechafin/{fechaFinStr}/todasestaciones": {
+      "get": {
+        "tags": [
+          "valores-climatologicos"
+        ],
+        "summary": "Climatologías diarias.",
+        "description": "Valores climatológicos de todas las estaciones para el rango de fechas seleccionado. Periodicidad: 1 vez al día.",
+        "operationId": "Climatologías diarias._1",
+        "parameters": [
+          {
+            "name": "fechaIniStr",
+            "in": "path",
+            "description": "Fecha Inicial (AAAA-MM-DDTHH:MM:SSUTC)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fechaFinStr",
+            "in": "path",
+            "description": "Fecha Final (AAAA-MM-DDTHH:MM:SSUTC)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/valores/climatologicos/inventarioestaciones/estaciones/{estaciones}": {
+      "get": {
+        "tags": [
+          "valores-climatologicos"
+        ],
+        "summary": "Estaciones por indicativo.",
+        "description": "Características de la estación climatológica pasada por parámetro.",
+        "operationId": "Estaciones por indicativo.",
+        "parameters": [
+          {
+            "name": "estaciones",
+            "in": "path",
+            "description": "Listado de indicativos climatológicos (id1,id2,id3,...,idn)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/valores/climatologicos/inventarioestaciones/todasestaciones": {
+      "get": {
+        "tags": [
+          "valores-climatologicos"
+        ],
+        "summary": "Inventario de estaciones (valores climatológicos).",
+        "description": "Inventario con las características de todas las estaciones climatológicas. Periodicidad: 1 vez al día.",
+        "operationId": "Inventario de estaciones (valores climatológicos).",
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/valores/climatologicos/mensualesanuales/datos/anioini/{anioIniStr}/aniofin/{anioFinStr}/estacion/{idema}": {
+      "get": {
+        "tags": [
+          "valores-climatologicos"
+        ],
+        "summary": "Climatologías mensuales anuales.",
+        "description": "Valores medios mensuales y anuales de los datos climatológicos para la estación y el periodo de años pasados por parámetro. Periodicidad de actualización: 1 vez al día.",
+        "operationId": "Climatologías mensuales anuales.",
+        "parameters": [
+          {
+            "name": "anioIniStr",
+            "in": "path",
+            "description": "Año Inicial (AAAA)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "anioFinStr",
+            "in": "path",
+            "description": "Año Final (AAAA)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "idema",
+            "in": "path",
+            "description": "Indicativo climatológico de la EMA",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/valores/climatologicos/normales/estacion/{idema}": {
+      "get": {
+        "tags": [
+          "valores-climatologicos"
+        ],
+        "summary": "Climatologías normales (1991-2020).",
+        "description": "Valores climatológicos normales (periodo 1991-2020) para la estación pasada por parámetro. Periodicidad: 1 vez al día.",
+        "operationId": "Climatologías normales (1991-2020).",
+        "parameters": [
+          {
+            "name": "idema",
+            "in": "path",
+            "description": "Indicativo climatológico de la EMA",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/valores/climatologicos/valoresextremos/parametro/{parametro}/estacion/{idema}": {
+      "get": {
+        "tags": [
+          "valores-climatologicos"
+        ],
+        "summary": "Valores extremos.",
+        "description": "Valores extremos para la estación y la variable (precipitación, temperatura y viento) pasadas por parámetro. Periodicidad: 1 vez al día.",
+        "operationId": "Valores extremos.",
+        "parameters": [
+          {
+            "name": "parametro",
+            "in": "path",
+            "description": " | Código | Parámetro Meteorológico |\n|----------|----------|\n| P  | Precipitación   |\n| T  | Temperatura   |\n| V  | Viento ",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "idema",
+            "in": "path",
+            "description": "Indicativo climatológico de la EMA",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/antartida/datos/fechaini/{fechaIniStr}/fechafin/{fechaFinStr}/estacion/{identificacion}": {
+      "get": {
+        "tags": [
+          "antartida"
+        ],
+        "summary": "Datos Antártida.",
+        "description": "Datos de observación de las campañas Antárticas en las que participa AEMET. Contiene observaciones diezminutales históricas de las estaciones meteorológicas y radiométricas de las bases de Juan Carlos I y Gabriel de Castilla. Frecuencia de actualización: Anual.",
+        "operationId": "Datos Antártida.",
+        "parameters": [
+          {
+            "name": "fechaIniStr",
+            "in": "path",
+            "description": "Fecha Inicial (AAAA-MM-DDTHH:MM:SSUTC)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fechaFinStr",
+            "in": "path",
+            "description": "Fecha Final (AAAA-MM-DDTHH:MM:SSUTC)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identificacion",
+            "in": "path",
+            "description": " | Identificacion | Estación |\n|----------|----------|\n| 89064      | Estación Meteorológica Juan Carlos I   |\n| 89064R      | Estación Radiométrica Juan Carlos I|\n| 89064RA  | Estación Radiométrica Juan Carlos I (hasta 08/03/2007)) |\n| 89070  | Estación Meteorológica Gabriel de Castilla   ",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "respuesta con éxito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "petición no autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "petición sin datos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "petición que sobrepasa los límites del servicio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/429"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "200": {
+        "required": [
+          "datos",
+          "descripcion",
+          "estado",
+          "metadatos"
+        ],
+        "type": "object",
+        "properties": {
+          "descripcion": {
+            "type": "string",
+            "default": "Éxito"
+          },
+          "estado": {
+            "type": "integer"
+          },
+          "datos": {
+            "type": "string"
+          },
+          "metadatos": {
+            "type": "string"
+          }
+        }
+      },
+      "401": {
+        "required": [
+          "descripcion",
+          "estado"
+        ],
+        "type": "object",
+        "properties": {
+          "descripcion": {
+            "type": "string",
+            "default": "Unauthorized"
+          },
+          "estado": {
+            "type": "integer"
+          }
+        }
+      },
+      "404": {
+        "required": [
+          "descripcion",
+          "estado"
+        ],
+        "type": "object",
+        "properties": {
+          "descripcion": {
+            "type": "string",
+            "default": "Not Found"
+          },
+          "estado": {
+            "type": "integer"
+          }
+        }
+      },
+      "429": {
+        "required": [
+          "descripcion",
+          "estado"
+        ],
+        "type": "object",
+        "properties": {
+          "descripcion": {
+            "type": "string",
+            "default": "Too Many Requests"
+          },
+          "estado": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "api_key": {
+        "type": "apiKey",
+        "name": "api_key",
+        "in": "header"
+      }
+    }
+  }
+}

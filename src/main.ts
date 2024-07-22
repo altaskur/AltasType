@@ -1,6 +1,8 @@
 import { errorMessage, infoMessage } from './customMessages';
 import {
-  checkIfJson, checkIfYaml, checkUserArgs,
+
+  checkIfJson, checkIfYaml,
+  getMethod,
 } from './checkArgs';
 import showWelcomeMessage from './welcomeMessage';
 import getSwagger from './getFile';
@@ -10,10 +12,10 @@ infoMessage('Checking the file...');
 
 (async () => {
   try {
-    const args = await checkUserArgs();
+    const path = await getMethod();
     infoMessage('Getting the Swagger file...');
 
-    const swagger = await getSwagger(args);
+    const swagger = await getSwagger(path);
 
     const isJson = checkIfJson(swagger);
     const isYaml = checkIfYaml(swagger);

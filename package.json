@@ -7,7 +7,8 @@
     "dev": "nodemon",
     "lint": "eslint . --ext .ts",
     "test": "jest --passWithNoTests",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "analyze": "ts-node ./src/main.ts"
   },
   "repository": {
     "type": "git",

@@ -1,8 +1,9 @@
 import prompts from 'prompts';
 import { existsSync } from 'fs';
 import { load } from 'js-yaml';
+
 import {
-  alertMessage, errorMessage, successMessage,
+  errorMessage, successMessage,
 } from './customMessages';
 
 const checkFilePath = (path: string): boolean => existsSync(path);
@@ -19,6 +20,13 @@ const checkUrl = async (url: string): Promise<boolean> => {
 const checkIfJson = (element: string): boolean => JSON.parse(element);
 const checkIfYaml = (element: string): boolean => Boolean(load(element));
 
+const checkArgs = (args: string): boolean => {
+  if (args === '') {
+    throw new Error('The path cannot be empty');
+  }
+  return true;
+};
+
 const getArgs = (args: string[]): string => {
   if (args.length < 3) {
     throw new Error('You must provide a path or URL');
@@ -26,49 +34,59 @@ const getArgs = (args: string[]): string => {
   return args[2];
 };
 
-const checkExtension = (element:string):boolean => {
+const checkExtension = (element: string): boolean => {
   if (!element.endsWith('.json') && !element.endsWith('.yaml')) {
-    return false;
+    throw new Error('The file must be a JSON or YAML file');
   }
   return true;
 };
 
-const checkUserArgs = async (): Promise<string> => {
-  try {
-    const args = getArgs(process.argv);
-    const checkArgs = checkExtension(args);
-    if (!checkArgs) {
-      errorMessage('The file must be a JSON or YAML file');
-      throw new Error('The file must be a JSON or YAML file');
-    }
-    successMessage(args);
-    return args;
-  } catch (error) {
-    alertMessage('You must provide a path or URL');
-    const response = await prompts({
-      type: 'text',
-      name: 'path',
-      message: 'Please provide a path or URL:',
-      validate: (value) => {
-        if (value === '') {
-          return 'The path cannot be empty';
-        }
-        return value.endsWith('.json') || value.endsWith('.yaml') ? true : 'The file must be a JSON or YAML file';
-      },
-    });
+const automaticFunction = (args: string[]): string => {
+  const path = getArgs(args);
+  checkExtension(path);
+  return path;
+};
 
-    if (response.path === undefined) {
-      throw new Error('The path cannot be empty');
-    }
+const cliFunction = async (): Promise<string> => {
+  const response = await prompts({
+    type: 'text',
+    name: 'path',
+    message: 'Please provide a path or URL:',
+    validate: (value) => {
+      if (value === '') {
+        return 'The path cannot be empty';
+      }
+      return value.endsWith('.json') || value.endsWith('.yaml') ? true : 'The file must be a JSON or YAML file';
+    },
+  });
 
-    successMessage(response.path);
-    return response.path;
+  if (response.path === undefined) {
+    throw new Error('The path cannot be empty');
   }
+
+  successMessage(response.path);
+  return response.path;
+};
+
+const getMethod = () => {
+  const args:string[] = process.argv;
+  console.log(args);
+  if (args.includes('--cli')) {
+    return cliFunction();
+  }
+
+  if (args.length <= 3) {
+    return automaticFunction(args);
+  }
+
+  errorMessage('You must provide a path or URL');
+  return process.exit(1);
 };
 
 export {
+  getMethod,
+  checkArgs,
   checkUrl,
-  checkUserArgs,
   checkFilePath,
   checkIfJson,
   checkIfYaml,
