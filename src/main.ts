@@ -6,6 +6,7 @@ import {
 } from './checkArgs';
 import showWelcomeMessage from './welcomeMessage';
 import getSwagger from './getFile';
+import evaluateInfo from './zodSchemas';
 
 showWelcomeMessage();
 infoMessage('Checking the file...');
@@ -13,6 +14,7 @@ infoMessage('Checking the file...');
 (async () => {
   try {
     const path = await getMethod();
+
     infoMessage('Getting the Swagger file...');
 
     const swagger = await getSwagger(path);
@@ -26,6 +28,8 @@ infoMessage('Checking the file...');
     }
 
     infoMessage('The file is a JSON or YAML file');
+
+    evaluateInfo(JSON.parse(swagger));
   } catch (error: unknown) {
     errorMessage(error as string);
     process.exit(1);
