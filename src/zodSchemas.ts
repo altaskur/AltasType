@@ -21,11 +21,16 @@ const InfoSchema = z.object({
   version: z.string(),
 });
 
+const openApiSchema = z.object({
+  openapi: z.string(),
+  info: InfoSchema,
+});
+
 const evaluateInfo = (document: { info: unknown }): void => {
-  const info = InfoSchema.safeParse(document);
+  const info = openApiSchema.safeParse(document);
 
   if (!info.success) {
-    throw new Error(info.error.errors[0].message);
+    console.error(info.error.errors);
   }
 };
 
