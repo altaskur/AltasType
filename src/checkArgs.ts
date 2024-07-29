@@ -70,7 +70,7 @@ const cliFunction = async (): Promise<string> => {
 
 const getMethod = () => {
   const args:string[] = process.argv;
-  console.log(args);
+
   if (args.includes('--cli')) {
     return cliFunction();
   }

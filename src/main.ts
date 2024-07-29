@@ -6,6 +6,8 @@ import {
 } from './checkArgs';
 import showWelcomeMessage from './welcomeMessage';
 import getSwagger from './getFile';
+import evaluateInfo from './zodSchemas';
+import { generateTypes, generateFileTypes } from './generateTypes';
 
 showWelcomeMessage();
 infoMessage('Checking the file...');
@@ -13,7 +15,6 @@ infoMessage('Checking the file...');
 (async () => {
   try {
     const path = await getMethod();
-    infoMessage('Getting the Swagger file...');
 
     const swagger = await getSwagger(path);
 
@@ -25,7 +26,12 @@ infoMessage('Checking the file...');
       process.exit(1);
     }
 
-    infoMessage('The file is a JSON or YAML file');
+    const structure = evaluateInfo(JSON.parse(swagger));
+
+    const types = generateTypes(structure);
+    generateFileTypes(types!);
+
+    infoMessage('The types were generated successfully');
   } catch (error: unknown) {
     errorMessage(error as string);
     process.exit(1);

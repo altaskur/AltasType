@@ -12,14 +12,15 @@ const getSwagger = async (url: string): Promise<string > => {
   errorMessage('The file does not exist');
 
   infoMessage('Checking if is a URL...');
+
   const response = await checkUrl(url);
-  if (response) {
-    infoMessage('Reading the URL...');
-    const data = await fetch(url);
-    return data.text();
+  if (!response) {
+    throw new Error('The file does not exist');
   }
 
-  throw new Error('The file does not exist');
+  infoMessage('Reading the URL...');
+  const data = await fetch(url);
+  return data.text();
 };
 
 export default getSwagger;
