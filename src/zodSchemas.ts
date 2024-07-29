@@ -1,4 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { z } from 'zod';
+
+export interface OpenApiObject {
+  openapi: string;
+  info: any;
+  components?: {
+    schemas: any;
+  };
+}
 
 const ContactSchema = z.object({
   name: z.string().optional(),
@@ -21,17 +30,31 @@ const InfoSchema = z.object({
   version: z.string(),
 });
 
+const schemasSchema = z.object({
+  type: z.string(),
+  properties: z.record(z.unknown()),
+  required: z.array(z.string()).optional(),
+  example: z.unknown().optional(),
+});
+
+const ComponentsSchema = z.object({
+  schemas: z.record(schemasSchema),
+});
+
 const openApiSchema = z.object({
   openapi: z.string(),
   info: InfoSchema,
+  components: ComponentsSchema.optional(),
 });
 
-const evaluateInfo = (document: { info: unknown }): void => {
+const evaluateInfo = (document: { info: unknown }): OpenApiObject => {
   const info = openApiSchema.safeParse(document);
 
   if (!info.success) {
     console.error(info.error.errors);
   }
+
+  return info.data!;
 };
 
 export default evaluateInfo;
