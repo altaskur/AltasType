@@ -2,10 +2,22 @@
 import { z } from 'zod';
 
 export interface OpenApiObject {
-  openapi: string;
+  openapi?: string;
+  swagger?: string;
   info: any;
   components?: {
     schemas: any;
+  };
+  definitions?: {
+    [key: string]: {
+      type: string;
+      properties:{
+        [key: string]: {
+          type: string;
+          format: string;
+        };
+      }
+    };
   };
 }
 
@@ -41,13 +53,36 @@ const ComponentsSchema = z.object({
   schemas: z.record(schemasSchema),
 });
 
+// TODO: complete definitions schema for openapi 2.0
+// TODO: apply Record<string, unknown> to properties
+
+// const DefinitionsSchema = z.record(
+//   z.object({
+//     type: z.string(),
+//     properties: z.object({
+//       code: z.object({
+//         type: z.string(),
+//       }),
+//       type: z.object({
+//         type: z.string(),
+//       }),
+//       message: z.object({
+//         type: z.string(),
+//       }),
+//     }),
+//   }),
+// );
+
 const openApiSchema = z.object({
-  openapi: z.string(),
+  openapi: z.string().optional(),
+  swagger: z.string().optional(),
   info: InfoSchema,
   components: ComponentsSchema.optional(),
+  // TODO: complete definitions schema for openapi 2.0
+  // definitions: DefinitionsSchema.optional(),
 });
 
-const evaluateInfo = (document: { info: unknown }): OpenApiObject => {
+const evaluateInfo = (document:object): OpenApiObject => {
   const info = openApiSchema.safeParse(document);
 
   if (!info.success) {

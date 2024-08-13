@@ -1,13 +1,11 @@
 import { errorMessage, infoMessage } from './customMessages';
 import {
-
-  checkIfJson, checkIfYaml,
   getMethod,
 } from './checkArgs';
 import showWelcomeMessage from './welcomeMessage';
-import getSwagger from './getFile';
+import { getSwagger, getSwaggerStructure } from './getFile';
 import evaluateInfo from './zodSchemas';
-import { generateTypes, generateFileTypes } from './generateTypes';
+import { generateTypes, generateFileTypes, generateOpenAPIFile } from './generateTypes';
 
 showWelcomeMessage();
 infoMessage('Checking the file...');
@@ -18,17 +16,15 @@ infoMessage('Checking the file...');
 
     const swagger = await getSwagger(path);
 
-    const isJson = checkIfJson(swagger);
-    const isYaml = checkIfYaml(swagger);
+    const swaggerParsed = getSwaggerStructure(swagger);
 
-    if (!isJson && !isYaml) {
-      errorMessage('The file must be a JSON or YAML file');
-      process.exit(1);
-    }
+    const structure = evaluateInfo(swaggerParsed);
 
-    const structure = evaluateInfo(JSON.parse(swagger));
+    generateOpenAPIFile(JSON.stringify(swaggerParsed, null, 2));
+    infoMessage('The OpenAPI file was generated successfully');
 
     const types = generateTypes(structure);
+
     generateFileTypes(types!);
 
     infoMessage('The types were generated successfully');

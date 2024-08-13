@@ -28,7 +28,6 @@
     "@typescript-eslint/eslint-plugin": "^7.15.0",
     "@typescript-eslint/parser": "^7.15.0",
     "commitlint": "^19.3.0",
-    "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^18.0.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
@@ -44,6 +43,7 @@
     "minimist": "^1.2.8",
     "picocolors": "^1.0.1",
     "prompts": "^2.4.2",
+    "yaml": "^2.5.0",
     "zod": "^3.23.8"
   }
 }

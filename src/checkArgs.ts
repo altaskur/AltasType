@@ -1,6 +1,5 @@
 import prompts from 'prompts';
 import { existsSync } from 'fs';
-import { load } from 'js-yaml';
 
 import {
   errorMessage, successMessage,
@@ -16,9 +15,6 @@ const checkUrl = async (url: string): Promise<boolean> => {
     return false;
   }
 };
-
-const checkIfJson = (element: string): boolean => JSON.parse(element);
-const checkIfYaml = (element: string): boolean => Boolean(load(element));
 
 const checkArgs = (args: string): boolean => {
   if (args === '') {
@@ -88,6 +84,4 @@ export {
   checkArgs,
   checkUrl,
   checkFilePath,
-  checkIfJson,
-  checkIfYaml,
 };

@@ -39,8 +39,12 @@ const generateTypes = (structure: OpenApiObject): string => {
   return types;
 };
 
-const generateFileTypes = async (types: string) => {
-  fs.writeFileSync('ApiTypes.ts', types);
+const generateOpenAPIFile = async (types: string) => {
+  fs.writeFileSync('./results/openApi.json', types);
 };
 
-export { generateTypes, generateFileTypes };
+const generateFileTypes = async (types: string) => {
+  fs.writeFileSync('./results/apiTypes.ts', types);
+};
+
+export { generateTypes, generateFileTypes, generateOpenAPIFile };

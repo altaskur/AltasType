@@ -14,6 +14,7 @@ const getSwagger = async (url: string): Promise<string > => {
   infoMessage('Checking if is a URL...');
 
   const response = await checkUrl(url);
+
   if (!response) {
     throw new Error('The file does not exist');
   }
@@ -23,4 +24,12 @@ const getSwagger = async (url: string): Promise<string > => {
   return data.text();
 };
 
-export default getSwagger;
+const getSwaggerStructure = (swagger: string):object => {
+  try {
+    return JSON.parse(swagger);
+  } catch (error) {
+    throw new Error('The file is not a JSON');
+  }
+};
+
+export { getSwagger, getSwaggerStructure };
